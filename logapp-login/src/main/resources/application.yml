@@ -1,0 +1,25 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: logapp-login
+user: 
+  userServicePath: http://logapp-user/user/queryById/
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.lenovo: DEBUG
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@localhost:8083/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    metadata-map:
+      zone: ABC
+      lilizhou: BBC
+    lease-renewal-interval-in-seconds: 5

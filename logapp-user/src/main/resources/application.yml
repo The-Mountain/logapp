@@ -1,0 +1,37 @@
+server:
+  port: 8003
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+      settings:
+        trace: true
+      path: /h2console
+  datasource:
+    url: jdbc:h2:file:D:/temp/h2/logdb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: root
+    password: 123456
+  application:
+    name: logapp-user
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.lenovo: DEBUG
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@localhost:8083/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    metadata-map:
+      zone: ABC
+      lilizhou: BBC
+    lease-renewal-interval-in-seconds: 5
